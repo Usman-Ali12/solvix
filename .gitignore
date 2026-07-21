@@ -8,6 +8,8 @@
 # env files with real secrets — .env.example is fine to commit, these are not
 .env
 .env*.local
+.env.local
+
 
 # misc
 .DS_Store
