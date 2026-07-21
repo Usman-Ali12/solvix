@@ -47,14 +47,14 @@ export default function Footer() {
           </p>
           <div className="mt-6 flex gap-4">
             <a
-              href="mailto:hello@solvix.ai"
+              href="mailto:info@solvixsolution.com"
               aria-label="Email Solvix"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-line text-slate-soft transition-colors hover:border-circuit hover:text-circuit"
             >
               <Mail size={16} />
             </a>
             <a
-              href="https://wa.me/10000000000"
+              href="https://wa.me/923048876558"
               aria-label="Message Solvix on WhatsApp"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-line text-slate-soft transition-colors hover:border-circuit hover:text-circuit"
             >
@@ -97,10 +97,20 @@ export default function Footer() {
 
         <div>
           <h4 className="eyebrow">Get in touch</h4>
-          <ul className="mt-4 flex flex-col gap-3 text-sm text-slate-soft">
-            <li>hello@solvix.ai</li>
-            <li>Karachi, Pakistan</li>
-          </ul>
+          <div className="mt-4 rounded-2xl border border-slate-line bg-void-soft/60 p-4 text-sm text-slate-soft">
+            <a
+              href="mailto:info@solvixsolution.com"
+              className="block font-medium text-paper transition-colors hover:text-circuit"
+            >
+              info@solvixsolution.com
+            </a>
+            <a href="tel:+923048876558" className="mt-2 block text-paper transition-colors hover:text-accent">
+              +92 304 8876558
+            </a>
+            <p className="mt-2 text-xs uppercase tracking-[0.2em] text-slate-soft">
+              Temporary business line
+            </p>
+          </div>
         </div>
       </div>
 

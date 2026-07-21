@@ -39,18 +39,15 @@ export default function HeroMedia() {
 
   return (
     <div className="relative mx-auto w-full max-w-lg md:max-w-none">
-      {/* Ambient glow behind the panel */}
-      <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-signal/25 via-circuit/10 to-transparent blur-2xl" />
-
-      <div className="relative overflow-hidden rounded-2xl border border-slate-line bg-void-soft shadow-2xl">
+      <div className="relative overflow-hidden rounded-[1.1rem] border border-slate-line bg-void-soft shadow-[0_10px_35px_rgba(0,0,0,0.08)]">
         {/* Console header */}
         <div className="flex items-center justify-between border-b border-slate-line px-5 py-3.5">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-circuit opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-circuit" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-circuit">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-accent">
               Live activity
             </span>
           </div>
@@ -77,13 +74,13 @@ export default function HeroMedia() {
                 <div
                   key={event.id}
                   className={clsx(
-                    "glass-panel flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-700",
+                    "glass-panel flex items-center gap-3 rounded-[0.9rem] px-4 py-3 transition-all duration-700",
                     i === visible.length - 1
                       ? "animate-fade-up opacity-100"
                       : "opacity-70"
                   )}
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-signal/15 text-circuit">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
                     <Icon size={14} />
                   </span>
                   <span className="flex-1 truncate text-sm text-paper">{event.label}</span>

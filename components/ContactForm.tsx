@@ -46,7 +46,10 @@ export default function ContactForm() {
       }
 
       setSubmitted(true);
-      showToast("Message sent — we'll be in touch within 48 hours.", "success");
+      showToast(
+        result?.message || "Message received — we'll follow up quickly.",
+        "success"
+      );
     } catch (err) {
       const messageText =
         err instanceof Error ? err.message : "Something went wrong. Please try again.";
@@ -64,8 +67,8 @@ export default function ContactForm() {
           Message sent
         </h3>
         <p className="mt-2 max-w-sm text-sm text-slate-soft">
-          Thanks for reaching out — we'll get back to you within 48 hours to
-          set up your free consultation.
+          Thanks for reaching out — your request has been captured and routed
+          for a fast follow-up.
         </p>
       </div>
     );

@@ -7,5 +7,9 @@ export default function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+  return (
+    <NextThemesProvider forcedTheme="dark" {...props}>
+      {children}
+    </NextThemesProvider>
+  );
 }

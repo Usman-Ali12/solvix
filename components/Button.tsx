@@ -22,11 +22,11 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-signal text-white hover:bg-signal-light hover:shadow-[0_0_0_1px_rgba(59,91,255,0.4),0_8px_30px_rgba(59,91,255,0.35)]",
+      "bg-accent text-[#1f1711] hover:bg-[rgb(var(--signal-light))]",
     secondary:
-      "bg-white text-[#0A0E16] hover:bg-white/90",
+      "bg-void-soft text-paper hover:bg-void-dim",
     ghost:
-      "border border-slate-line text-paper hover:border-circuit hover:text-circuit",
+      "border border-slate-line text-paper hover:border-accent hover:text-accent",
   };
 
   return (

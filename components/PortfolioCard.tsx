@@ -13,14 +13,11 @@ export type PortfolioItem = {
 
 export default function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-slate-line bg-void-soft transition-colors hover:border-signal/50">
-      <div
-        className={`relative flex h-48 items-center justify-center overflow-hidden ${item.gradient}`}
-      >
-        <span className="font-display text-2xl font-semibold text-white/25">
+    <div className="group flex flex-col overflow-hidden rounded-[1.1rem] border border-slate-line bg-void-soft transition-colors hover:border-accent/40">
+      <div className="relative flex h-48 items-center justify-center overflow-hidden border-b border-slate-line bg-void-dim">
+        <span className="font-display text-2xl font-semibold text-paper/30">
           {item.title}
         </span>
-        <div className="absolute inset-0 bg-gradient-to-t from-void-soft via-transparent to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col p-6">
@@ -46,7 +43,7 @@ export default function PortfolioCard({ item }: { item: PortfolioItem }) {
         <ul className="mt-4 space-y-1.5 text-xs text-slate-soft">
           {item.features.map((f) => (
             <li key={f} className="flex items-center gap-2">
-              <span className="h-1 w-1 rounded-full bg-circuit" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {f}
             </li>
           ))}
@@ -55,7 +52,7 @@ export default function PortfolioCard({ item }: { item: PortfolioItem }) {
         <div className="mt-6 flex gap-3">
           <a
             href={item.demoHref ?? "#"}
-            className="flex items-center gap-1.5 text-xs font-medium text-signal-light hover:text-circuit"
+            className="flex items-center gap-1.5 text-xs font-medium text-accent hover:text-[rgb(var(--signal-light))]"
           >
             <ExternalLink size={13} /> Live Demo
           </a>

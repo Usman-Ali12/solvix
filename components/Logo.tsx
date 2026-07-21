@@ -1,9 +1,12 @@
+import type { CSSProperties } from "react";
+
 type LogoProps = {
   size?: number;
   className?: string;
   variant?: "solid" | "outline";
   gradientId?: string;
   animated?: boolean;
+  style?: CSSProperties;
 };
 
 /**
@@ -21,6 +24,7 @@ export default function Logo({
   variant = "solid",
   gradientId = "solvix-mark-gradient",
   animated = true,
+  style,
 }: LogoProps) {
   const stroke =
     variant === "solid" ? `url(#${gradientId})` : "currentColor";
@@ -36,6 +40,7 @@ export default function Logo({
       viewBox="0 0 100 100"
       fill="none"
       className={`${animated ? "animate-glow-pulse" : ""} ${className}`}
+      style={style}
       aria-hidden="true"
     >
       {variant === "solid" && (

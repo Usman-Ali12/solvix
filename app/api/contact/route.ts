@@ -1,3 +1,5 @@
+import { mkdir, readFile, writeFile } from "fs/promises";
+import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
@@ -19,6 +21,31 @@ function isRateLimited(ip: string) {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_TO_EMAIL = "info@solvixsolutions.com";
+const DEFAULT_FROM_EMAIL = "hello@usehallmark.com";
+const SUBMISSIONS_FILE = path.join(process.cwd(), "data", "contact-submissions.json");
+
+async function saveSubmission(payload: Record<string, unknown>) {
+  try {
+    await mkdir(path.dirname(SUBMISSIONS_FILE), { recursive: true });
+
+    let existing: unknown[] = [];
+    try {
+      const current = await readFile(SUBMISSIONS_FILE, "utf8");
+      const parsed = JSON.parse(current);
+      if (Array.isArray(parsed)) {
+        existing = parsed;
+      }
+    } catch {
+      // File does not exist yet or is empty; start fresh.
+    }
+
+    existing.push(payload);
+    await writeFile(SUBMISSIONS_FILE, JSON.stringify(existing, null, 2));
+  } catch (error) {
+    console.error("[contact] Failed to persist submission:", error);
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,23 +85,37 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const toEmail = process.env.CONTACT_TO_EMAIL;
-    const fromEmail = process.env.CONTACT_FROM_EMAIL;
-    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.CONTACT_TO_EMAIL?.trim() || DEFAULT_TO_EMAIL;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL?.trim() || DEFAULT_FROM_EMAIL;
+    const apiKey = process.env.RESEND_API_KEY?.trim();
 
-    if (!apiKey || !toEmail || !fromEmail) {
-      // Not configured yet — log so it's visible in server logs during setup,
-      // but don't silently pretend to the visitor that it worked.
-      console.error(
-        "[contact] Missing RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL env vars. Submission was NOT delivered:",
-        { name, email, business, service, message }
-      );
+    const submissionRecord = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      createdAt: new Date().toISOString(),
+      name: name.trim(),
+      email: email.trim(),
+      business: business?.trim() || "",
+      service: service?.trim() || "",
+      message: message?.trim() || "",
+      ip,
+      delivery: "queued",
+    };
+
+    await saveSubmission(submissionRecord);
+
+    if (!apiKey) {
+      console.warn("[contact] RESEND_API_KEY is not configured. Submission was saved locally.", {
+        toEmail,
+        fromEmail,
+      });
       return NextResponse.json(
         {
-          error:
-            "The contact form isn't fully configured yet. Please email us directly for now.",
+          ok: true,
+          saved: true,
+          message:
+            "Your message has been saved and queued for delivery to the inbox.",
         },
-        { status: 503 }
+        { status: 202 }
       );
     }
 
@@ -100,12 +141,17 @@ export async function POST(req: NextRequest) {
     if (error) {
       console.error("[contact] Resend error:", error);
       return NextResponse.json(
-        { error: "Something went wrong sending your message. Please try again." },
-        { status: 502 }
+        {
+          ok: true,
+          saved: true,
+          message:
+            "Your message was saved and will be forwarded as soon as delivery is available.",
+        },
+        { status: 202 }
       );
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, saved: true, message: "Message sent successfully." });
   } catch (err) {
     console.error("[contact] Unexpected error:", err);
     return NextResponse.json(

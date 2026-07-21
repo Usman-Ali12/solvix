@@ -302,7 +302,7 @@ export default function ClientDashboard() {
             response.
           </p>
           <a
-            href="mailto:hello@solvix.ai"
+            href="mailto:info@solvixsolution.com"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 text-sm font-medium text-white hover:bg-signal-light"
           >
             Email support

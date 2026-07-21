@@ -1,18 +1,32 @@
+import dynamic from "next/dynamic";
 import { Globe, Bot, Workflow, LayoutTemplate, CalendarCheck, Headset } from "lucide-react";
 import Button from "@/components/Button";
 import SignalTrace from "@/components/SignalTrace";
 import HeroMedia from "@/components/HeroMedia";
 import ServiceCard from "@/components/ServiceCard";
 import PortfolioCard, { PortfolioItem } from "@/components/PortfolioCard";
-import { Testimonial } from "@/components/TestimonialCard";
-import FAQ, { FAQItem } from "@/components/FAQ";
+import type { Testimonial } from "@/components/TestimonialCard";
+import type { FAQItem } from "@/components/FAQ";
 import KineticWord from "@/components/KineticWord";
-import CTASection from "@/components/CTASection";
 import { templates } from "@/lib/templates";
 import PreviewCard from "@/components/preview/PreviewCard";
 import Counter from "@/components/Counter";
 import ScrollReveal from "@/components/ScrollReveal";
-import TestimonialCarousel from "@/components/TestimonialCarousel";
+
+const TestimonialCarousel = dynamic(() => import("@/components/TestimonialCarousel"), {
+  ssr: false,
+  loading: () => <div className="mx-auto max-w-4xl rounded-2xl border border-slate-line bg-void-soft/70 p-10" />,
+});
+
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  ssr: false,
+  loading: () => <div className="space-y-3" />,
+});
+
+const CTASection = dynamic(() => import("@/components/CTASection"), {
+  ssr: false,
+  loading: () => <section className="border-t border-slate-line py-24 md:py-32" />,
+});
 
 const services = [
   {
@@ -230,16 +244,17 @@ export default function Home() {
             </div>
 
 
-            <h1 className="mt-7 max-w-xl animate-fade-up font-display text-4xl font-semibold leading-[1.1] text-balance text-paper opacity-0 [animation-delay:0.15s] md:text-6xl">
-              Your business, running{" "}
-              <KineticWord words={["smarter", "24/7", "on autopilot"]} />
-              , not harder.
+            <h1 className="mt-7 max-w-2xl animate-fade-up font-display text-4xl font-semibold leading-[1.08] text-balance text-paper opacity-0 [animation-delay:0.15s] md:text-6xl">
+              Turn your website into a
+              <span className="block bg-gradient-to-r from-signal-light via-signal to-circuit bg-clip-text text-transparent">
+                24/7 growth engine.
+              </span>
             </h1>
 
             <p className="mt-6 max-w-lg animate-fade-up text-[15px] leading-relaxed text-slate-soft opacity-0 [animation-delay:0.25s] md:text-base">
-              Solvix builds premium websites, AI chatbots, and automation
-              that capture leads and handle busywork — so you spend less
-              time chasing customers and more time running your business.
+              We design fast, conversion-focused websites and AI systems that
+              answer questions, capture leads, and reduce repetitive work —
+              without adding complexity to your team.
             </p>
 
             <div className="mt-9 flex animate-fade-up flex-wrap items-center gap-4 opacity-0 [animation-delay:0.35s]">
@@ -247,8 +262,17 @@ export default function Home() {
                 Book a free consultation
               </Button>
               <Button href="/portfolio" variant="ghost" showArrow={false}>
-                View our work
+                Explore case studies
               </Button>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-soft">
+              <span className="rounded-full border border-slate-line bg-void-soft/70 px-3 py-1.5">
+                Built for service businesses
+              </span>
+              <span className="rounded-full border border-slate-line bg-void-soft/70 px-3 py-1.5">
+                Fast launch • clear ROI
+              </span>
             </div>
           </div>
 
@@ -259,7 +283,7 @@ export default function Home() {
       </section>
 
       {/* STATS */}
-      <section className="border-y border-slate-line bg-void-soft py-14">
+      <section className="border-y border-slate-line bg-void-soft/80 py-14">
         <div className="container-solvix grid grid-cols-2 gap-8 md:grid-cols-4">
           {stats.map((s, i) => (
             <ScrollReveal key={s.label} delay={i * 80} className="text-center md:text-left">
@@ -280,7 +304,7 @@ export default function Home() {
           <ScrollReveal className="max-w-xl">
             <p className="eyebrow">What we do</p>
             <h2 className="mt-4 font-display text-3xl font-semibold text-balance text-paper md:text-4xl">
-              Everything your business needs to look sharp and run itself.
+              Clear systems that make your business easier to trust, book, and grow.
             </h2>
           </ScrollReveal>
 
@@ -300,7 +324,7 @@ export default function Home() {
           <ScrollReveal>
             <p className="eyebrow text-center">Industries we serve</p>
             <h2 className="mx-auto mt-4 max-w-lg text-center font-display text-2xl font-semibold text-balance text-paper md:text-3xl">
-              Built for businesses that live on trust and local reputation.
+              Designed for businesses that depend on trust, timing, and reputation.
             </h2>
           </ScrollReveal>
 

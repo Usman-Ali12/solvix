@@ -27,20 +27,25 @@ export default function ContactPage() {
         <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="flex flex-col gap-6">
             <a
-              href="mailto:hello@solvix.ai"
+              href="mailto:info@solvixsolution.com"
               className="flex items-center gap-4 rounded-2xl border border-slate-line bg-void-soft p-5 transition-colors hover:border-circuit"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-signal/10 text-circuit">
                 <Mail size={18} />
               </span>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm font-medium text-paper">Email</p>
-                <p className="text-sm text-slate-soft">hello@solvix.ai</p>
+                <p className="truncate text-sm text-slate-soft">
+                  info@solvixsolution.com
+                </p>
+                <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-circuit">
+                  Fast reply • 24h
+                </p>
               </div>
             </a>
 
             <a
-              href="https://wa.me/10000000000"
+              href="https://wa.me/923048876558"
               className="flex items-center gap-4 rounded-2xl border border-slate-line bg-void-soft p-5 transition-colors hover:border-circuit"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-signal/10 text-circuit">
@@ -48,7 +53,10 @@ export default function ContactPage() {
               </span>
               <div>
                 <p className="text-sm font-medium text-paper">WhatsApp</p>
-                <p className="text-sm text-slate-soft">Chat with us directly</p>
+                <p className="text-sm text-slate-soft">+92 304 8876558</p>
+                <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-slate-soft">
+                  Temporary business line
+                </p>
               </div>
             </a>
 

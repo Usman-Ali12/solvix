@@ -28,25 +28,24 @@ export default function ServiceCard({
       id={id}
       href={href}
       className={clsx(
-        "group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-slate-line bg-void-soft p-7 transition-all duration-300 hover:border-signal/50 hover:bg-void-dim",
-        featured && "bg-gradient-to-br from-signal/10 via-void-soft to-void-soft"
+        "group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.1rem] border border-slate-line bg-void-soft p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-void-dim",
+        featured && "border-accent/20 bg-void-soft"
       )}
     >
-      {featured && (
-        <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-signal/15 blur-3xl transition-opacity duration-300 group-hover:opacity-70" />
-      )}
       <div className="relative">
         <div className="flex items-center justify-between">
           <div
             className={clsx(
-              "flex items-center justify-center rounded-xl bg-signal/10 text-circuit transition-colors group-hover:bg-signal/20",
-              featured ? "h-14 w-14" : "h-11 w-11"
+              "flex items-center justify-center transition-colors",
+              featured
+                ? "h-14 w-14 rounded-[0.9rem] border border-slate-line bg-void-dim text-accent"
+                : "h-9 w-9 rounded-full text-accent"
             )}
           >
-            <Icon size={featured ? 26 : 20} />
+            <Icon size={featured ? 24 : 18} />
           </div>
           {badge && (
-            <span className="rounded-full bg-circuit/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-circuit">
+            <span className="rounded-full border border-slate-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-soft">
               {badge}
             </span>
           )}
@@ -68,7 +67,7 @@ export default function ServiceCard({
           {description}
         </p>
       </div>
-      <div className="relative mt-6 flex items-center gap-1.5 text-sm font-medium text-signal-light">
+      <div className="relative mt-6 flex items-center gap-1.5 text-sm font-medium text-accent">
         Learn more
         <ArrowRight
           size={14}
