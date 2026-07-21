@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Light theme */
+  --void: 250 250 249;
+  --void-soft: 241 241 239;
+  --void-dim: 234 234 231;
+  --paper: 10 14 22;
+  --slate: 91 100 114;
+  --slate-soft: 100 108 122;
+  --slate-line: 224 224 220;
+  --signal: 59 91 255;
+  --signal-dim: 42 63 204;
+  --signal-light: 90 118 255;
+  --circuit: 14 148 138;
+  --circuit-dim: 10 116 108;
+}
+
+.dark {
+  --void: 10 14 22;
+  --void-soft: 17 23 38;
+  --void-dim: 19 26 44;
+  --paper: 250 250 249;
+  --slate: 138 147 160;
+  --slate-soft: 138 147 160;
+  --slate-line: 35 43 58;
+  --signal: 59 91 255;
+  --signal-dim: 42 63 204;
+  --signal-light: 124 147 255;
+  --circuit: 51 230 216;
+  --circuit-dim: 31 184 173;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--void));
+  color: rgb(var(--paper));
+  font-family: var(--font-body);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  position: relative;
+}
+
+/* Subtle film-grain texture — procedurally generated via SVG turbulence,
+   no image asset, negligible performance cost. Breaks up flat gradients
+   with a touch of tactile, "human-crafted" texture instead of the
+   uniformly smooth look every AI-generated site defaults to. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background-color: rgb(var(--circuit));
+  color: rgb(var(--void));
+}
+
+/* Visible keyboard focus, always */
+:focus-visible {
+  outline: 2px solid rgb(var(--circuit));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.container-solvix {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-solvix {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--circuit));
+}
+
+.grid-fade {
+  background-image: linear-gradient(
+      to right,
+      rgb(var(--signal) / 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(var(--signal) / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 100%);
+}
+
+.glass-panel {
+  background: rgb(var(--void-soft) / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(var(--slate-line));
+}
+

@@ -1,0 +1,37 @@
+# Solvix Solutions
+
+> Solvix Solutions builds premium business websites, AI chatbots, and automation systems for growing businesses, based in Karachi, Pakistan and serving clients worldwide.
+
+Solvix Solutions exists to solve two problems for small and mid-sized businesses: getting more customers, and giving business owners back their time. Founded by Umair.
+
+## Services
+
+- **Business Websites** — Custom, fast-loading, mobile-responsive websites built to convert visitors into inquiries, with SEO foundations from day one.
+- **AI Chatbots** — Chatbots trained on a specific business that answer customer questions instantly, qualify leads, and can book appointments, 24/7.
+- **AI Automation** — Connects existing tools (calendars, forms, CRMs, email) so information flows automatically without manual admin work.
+- **Landing Pages** — Single-purpose, conversion-focused pages for ad campaigns and launches.
+- **Appointment Booking Systems** — Self-serve booking synced to calendars with automatic reminders, reducing no-shows.
+- **CSR Support & Dispatch** — AI call answering and job routing built specifically for HVAC, plumbing, electrical, and other field service businesses.
+
+## Pricing
+
+Solvix offers tiered monthly plans (Starter, Growth, Pro, and Dispatch Pro), starting around $149/month plus a one-time setup fee. See /pricing for current details.
+
+## Differentiators
+
+- Non-technical clients are fully supported — Solvix handles all technical work and explains everything in plain language.
+- Can integrate with or rebuild an existing website rather than requiring a from-scratch rebuild.
+- Field-service dispatch offering (CSR Support & Dispatch) is a specialized, less commonly offered service among AI website/automation agencies.
+
+## Pages
+
+- Home: https://solvix.ai/
+- Services: https://solvix.ai/services
+- Pricing: https://solvix.ai/pricing
+- About: https://solvix.ai/about
+- Portfolio: https://solvix.ai/portfolio
+- Contact: https://solvix.ai/contact
+
+## Contact
+
+https://solvix.ai/contact
