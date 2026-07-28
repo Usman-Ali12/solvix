@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Link from "next/link";
 import { Mail, MessageCircle, Linkedin, Instagram } from "lucide-react";
 import Logo from "@/components/Logo";
@@ -119,34 +118,6 @@ export default function Footer() {
         <span>© {new Date().getFullYear()} Solvix. All rights reserved.</span>
         <span className="font-mono">Built with Next.js &amp; care.</span>
       </div>
-=======
-export default function Footer() {
-  return (
-    <footer>
-      <div className="wrap">
-        <div className="footer-top">
-          <div className="footer-word">Solvix</div>
-          <div className="footer-links">
-            <div className="footer-col">
-              <h5>Studio</h5>
-              <a href="#services">Services</a>
-              <a href="#process">Process</a>
-              <a href="#work">Work</a>
-              <a href="#about">About</a>
-            </div>
-            <div className="footer-col">
-              <h5>Contact</h5>
-              <a href="mailto:info@solvixsolution.com">info@solvixsolution.com</a>
-              <a href="#contact">Book a call</a>
-            </div>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Solvix Solution. AI systems for businesses that run on more than guesswork.</span>
-          <span>solvixsolution.com</span>
-        </div>
-      </div>
->>>>>>> 3794f29 (Initial commit)
     </footer>
   );
 }

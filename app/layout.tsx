@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-<<<<<<< HEAD
 import dynamic from "next/dynamic";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -11,6 +10,7 @@ import ToastProvider from "@/components/Toast";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Not needed for first paint — deferring keeps them out of the initial JS bundle.
 // ChatWidget also pulls in framer-motion, so this is the single biggest bundle-size win available here.
@@ -139,33 +139,7 @@ export default function RootLayout({
             <StickyMobileCTA />
           </ToastProvider>
         </ThemeProvider>
-=======
-import "./globals.css";
-import Loader from "@/components/Loader";
-import Nav from "@/components/Nav";
-
-export const metadata: Metadata = {
-  title: "Solvix Solution | Automation for businesses nobody's touched yet",
-  description:
-    "Solvix Solution builds AI websites, chatbots, and back-office automation for companies still running on spreadsheets and guesswork.",
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
-        <Loader />
-        <Nav />
-        {children}
->>>>>>> 3794f29 (Initial commit)
+        <SpeedInsights />
       </body>
     </html>
   );
