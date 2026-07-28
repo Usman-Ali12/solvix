@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import dynamic from "next/dynamic";
 import { Globe, Bot, Workflow, LayoutTemplate, CalendarCheck, Headset } from "lucide-react";
 import Button from "@/components/Button";
@@ -460,30 +459,5 @@ export default function Home() {
 
       <CTASection />
     </>
-=======
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Work from "@/components/Work";
-import About from "@/components/About";
-import OffsetCards from "@/components/OffsetCards";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-
-export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <Marquee />
-      <Services />
-      <Process />
-      <Work />
-      <About />
-      <OffsetCards />
-      <Contact />
-      <Footer />
-    </main>
->>>>>>> 3794f29 (Initial commit)
   );
 }
