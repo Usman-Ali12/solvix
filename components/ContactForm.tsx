@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/components/Toast";
@@ -31,6 +32,31 @@ export default function ContactForm() {
       service: data.get("service")?.toString() ?? "",
       message: data.get("message")?.toString() ?? "",
       company: data.get("company")?.toString() ?? "", // honeypot
+=======
+import { useState, type FormEvent } from "react";
+import MagneticButton from "./MagneticButton";
+
+type Status = "idle" | "sending" | "ok" | "error";
+
+export default function ContactForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: String(data.get("name") || ""),
+      email: String(data.get("email") || ""),
+      message: String(data.get("message") || ""),
+      // honeypot — left empty by real visitors, hidden from view
+      company_website: String(data.get("company_website") || ""),
+>>>>>>> 3794f29 (Initial commit)
     };
 
     try {
@@ -39,6 +65,7 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+<<<<<<< HEAD
       const result = await res.json();
 
       if (!res.ok) {
@@ -177,3 +204,56 @@ export default function ContactForm() {
   );
 }
 
+=======
+      const json = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMsg(json.error || "Something went wrong. Try again later.");
+        return;
+      }
+
+      setStatus("ok");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error. Try again.");
+    }
+  }
+
+  return (
+    <form className="contact-form" onSubmit={handleSubmit}>
+      {/* Honeypot field — visually hidden, real users never touch it */}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="company_website">Leave this field empty</label>
+        <input type="text" id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <div className="form-row">
+        <div className="field">
+          <label htmlFor="name">Name</label>
+          <input id="name" name="name" type="text" required minLength={2} maxLength={80} placeholder="Your name" />
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" type="email" required maxLength={200} placeholder="you@company.com" />
+        </div>
+      </div>
+
+      <div className="field">
+        <label htmlFor="message">Message</label>
+        <textarea id="message" name="message" required minLength={10} maxLength={2000} placeholder="What are you looking to automate?" />
+      </div>
+
+      <div className="form-footer">
+        <MagneticButton type="submit" className="btn btn-primary btn-lg">
+          {status === "sending" ? "Sending…" : "Send message"}
+        </MagneticButton>
+
+        {status === "ok" && <span className="form-status ok">Sent. We&rsquo;ll reply from info@solvixsolution.com.</span>}
+        {status === "error" && <span className="form-status err">{errorMsg}</span>}
+      </div>
+    </form>
+  );
+}
+>>>>>>> 3794f29 (Initial commit)
